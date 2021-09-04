@@ -1,3 +1,6 @@
+#The result is a text file with a list of addresses to which it was not possible to send an email
+
+
 import datetime
 import email
 import imaplib
