@@ -10,9 +10,10 @@ domains_list = [x.replace('\n', '') for x in file_list]
 domain_dict = {}
 for d in domains_list:
     w = whois.whois(d)
-    diff_days = w.expiration_date - datetime.now()
+    if w.expiration_date is not None:
+        diff_days = w.expiration_date - datetime.now()
+        domain_dict[d] = diff_days.days
     #print('{', '\n','"name":','"%s",' % d,'\n','"days":','"%s",' % diff_days.days,'\n','},')
-    domain_dict[d] = diff_days.days
     
 #print(']', '\n', '}')
 domain_array = [{'name': i, 'days' : domain_dict[i]} for i in domain_dict]
